@@ -17,7 +17,7 @@
 ---
 
 ## **About the Project**
-This project is a side-scrolling 2D platformer developed in Unity. It was made by the CAP3020 Spring 2025 Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
+This project is a side-scrolling 2D platformer developed in Unity. It was made by the (CAP3020 Spring 2025) Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
 
 ---
 

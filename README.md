@@ -89,7 +89,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   - [@username](https://github.com/username)  
   - [@Alana Belnavis-Walters](https://github.com/humonae)  
   - [@Ethan Willis](https://github.com/ethanbwillis)
-  - [@Jack](https://github.com/EmptySet-Exe)  
+  - [@Surpris "Jack" Mezardieu](https://github.com/EmptySet-Exe)  
 
 
 

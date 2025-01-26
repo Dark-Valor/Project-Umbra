@@ -31,7 +31,6 @@ This project is a side-scrolling 2D platformer developed in Unity. It was made b
 ---
 
 ## **Screenshots**
-Add a few screenshots or GIFs to showcase the project visually:
 
 **Gameplay Example:**  
 ![Gameplay_Concept_01](GitHub/imgs/Gameplay_Concept_01.png)  
@@ -43,7 +42,6 @@ Add a few screenshots or GIFs to showcase the project visually:
 ---
 
 ## **Getting Started**
-Explain how others can download, run, or contribute to the project.
 
 ### **Prerequisites**
 List any dependencies or software needed:  
@@ -52,7 +50,6 @@ List any dependencies or software needed:
 - Git (for cloning the repository).  
 
 ### **Installation**
-Provide step-by-step instructions for cloning and running the project:
 
 1. Clone the repository:  
    ```bash

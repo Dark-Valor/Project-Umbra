@@ -83,7 +83,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub:
   - [@Javier Lopez](https://github.com/JJRaderFTW)  
   - [@Aidan Rudolph](https://github.com/Aidan-Rudolph)
-  - [@username](https://github.com/username)  
+  - [@Seth Sainz](https://github.com/SethSainz)  
   - [@Alana Belnavis-Walters](https://github.com/humonae)  
   - [@Ethan Willis](https://github.com/ethanbwillis)
   - [@Surpris "Jack" Mezardieu](https://github.com/EmptySet-Exe)  

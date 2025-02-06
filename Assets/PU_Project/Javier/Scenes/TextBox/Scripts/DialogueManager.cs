@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 
 public class DialogueManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     public float typingSpeed = 0.01f; //Speed of the typing effect
     public int index; //Index of the current sentence
+    
+    public Action nextSentence;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +55,12 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
+
+        // //Check if there is a coroutine active and stop it
+        // if (nextSentence != null)
+        // {
+        //     StopCoroutine(nextSentence.Method.Name);
+        // }
 
         string sentence = sentences.Dequeue();
         dialogueText.text = "";

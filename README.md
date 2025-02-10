@@ -17,7 +17,11 @@
 ---
 
 ## **About the Project**
+<<<<<<< HEAD
 This project is a side-scrolling 2D platformer developed in Unity. It was made by the (CAP3020 Spring 2025) Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
+=======
+This project is a side-scrolling 2D platformer developed in Unity. It was made by the CAP3020 Spring 2025 Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
+>>>>>>> text-box-canvas
 
 ---
 
@@ -31,6 +35,10 @@ This project is a side-scrolling 2D platformer developed in Unity. It was made b
 ---
 
 ## **Screenshots**
+<<<<<<< HEAD
+=======
+Add a few screenshots or GIFs to showcase the project visually:
+>>>>>>> text-box-canvas
 
 **Gameplay Example:**  
 ![Gameplay_Concept_01](GitHub/imgs/Gameplay_Concept_01.png)  
@@ -42,6 +50,10 @@ This project is a side-scrolling 2D platformer developed in Unity. It was made b
 ---
 
 ## **Getting Started**
+<<<<<<< HEAD
+=======
+Explain how others can download, run, or contribute to the project.
+>>>>>>> text-box-canvas
 
 ### **Prerequisites**
 List any dependencies or software needed:  
@@ -50,6 +62,10 @@ List any dependencies or software needed:
 - Git (for cloning the repository).  
 
 ### **Installation**
+<<<<<<< HEAD
+=======
+Provide step-by-step instructions for cloning and running the project:
+>>>>>>> text-box-canvas
 
 1. Clone the repository:  
    ```bash
@@ -83,10 +99,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub:
   - [@Javier Lopez](https://github.com/JJRaderFTW)  
   - [@Aidan Rudolph](https://github.com/Aidan-Rudolph)
+<<<<<<< HEAD
   - [@Seth Sainz](https://github.com/SethSainz)  
   - [@Alana Belnavis-Walters](https://github.com/humonae)  
   - [@Ethan Willis](https://github.com/ethanbwillis)
   - [@Surpris "Jack" Mezardieu](https://github.com/EmptySet-Exe)  
+=======
+  - [@username](https://github.com/username)  
+  - [@Alana Belnavis-Walters](https://github.com/humonae)  
+  - [@Ethan Willis](https://github.com/ethanbwillis)
+  - [@Jack](https://github.com/EmptySet-Exe)  
+>>>>>>> text-box-canvas
 
 
 

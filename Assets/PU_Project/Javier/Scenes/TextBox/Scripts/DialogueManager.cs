@@ -20,6 +20,9 @@ public class DialogueManager : MonoBehaviour
     
     public Action nextSentence;
 
+    private Coroutine typing;
+    public Button dialogueStartButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("Starting conversation with " + dialogue.name);
+        //Debug.Log("Starting conversation with " + dialogue.name);
 
         index = 0;
 
@@ -50,34 +53,30 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        if (typing != null)
+            StopCoroutine(typing);
+
+        if (sentences.Count == 0)
         {
+            dialogueStartButton.interactable = true;
             EndDialogue();
             return;
         }
 
-        // //Check if there is a coroutine active and stop it
-        // if (nextSentence != null)
-        // {
-        //     StopCoroutine(nextSentence.Method.Name);
-        // }
-
         string sentence = sentences.Dequeue();
-        dialogueText.text = "";
-        StartCoroutine(TypeSentence(sentence));
-        Debug.Log(sentence);
+        typing = StartCoroutine(TypeSentence(sentence));
     }
 
     void EndDialogue()
     {
         dialougeBox.SetActive(false);
-        Debug.Log("End of conversation");
         isDialogueActive = false;
     }
 
     IEnumerator TypeSentence(string sentence)
     {
-        foreach(char letter in sentence.ToCharArray())
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);

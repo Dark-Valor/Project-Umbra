@@ -219,6 +219,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &617835131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+  m_PrefabInstance: {fileID: 956964569796897504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617835134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5383054349112426909, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+  m_PrefabInstance: {fileID: 956964569796897504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011cdd4455618474da873633f8f9de64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &679901756 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 505658306716175226, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
@@ -453,8 +475,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 617835134}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerDialouge
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: buttonPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: buttontest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678948994773579696, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2028111714387976307, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1703332953}
+    - target: {fileID: 5383054349112426909, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: startButton
+      value: 
+      objectReference: {fileID: 617835131}
+    - target: {fileID: 5383054349112426909, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
+      propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 1703332953}
     - target: {fileID: 6770997833321757089, guid: 96d52f33635f3e042869d6434c08d524, type: 3}
@@ -535,9 +605,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 112066490}
     - target: {fileID: 6753068527336692201, guid: 28efbdbe96e64764291e6ee77a616356, type: 3}
+      propertyPath: typingSpeed
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753068527336692201, guid: 28efbdbe96e64764291e6ee77a616356, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1194902220}
+    - target: {fileID: 6753068527336692201, guid: 28efbdbe96e64764291e6ee77a616356, type: 3}
+      propertyPath: dialogueStartButton
+      value: 
+      objectReference: {fileID: 617835131}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     DialogueManager dialogueManager;
 
-    private UnityEvent<int> onSpacePressed = new UnityEvent<int>();
+    private UnityEvent onSpacePressed = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -23,23 +23,13 @@ public class PlayerController : MonoBehaviour
     
         if(Input.GetKeyUp(KeyCode.Space))
         {
-           Debug.Log("Space key was pressed");
-            onSpacePressed.Invoke(0);
-
-        //   if(FindObjectOfType<DialogueManager>().isDialogueActive)
-        //    {
-        //        FindObjectOfType<DialogueManager>().DisplayNextSentence();
-        //    }
-        //    if(dialogueManager.isDialogueActive)
-        //    {
-        //        dialogueManager.DisplayNextSentence();
-        //    }
-            
+            Debug.Log("Space pressed at: " + Time.time);
+           onSpacePressed.Invoke();
         }
 
     }
 
-    void DisplaySentence(int i) {
+    void DisplaySentence() {
         Debug.Log("Displaying sentence");
         dialogueManager.DisplayNextSentence();
     }

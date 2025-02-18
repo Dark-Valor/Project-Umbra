@@ -618,8 +618,8 @@ GameObject:
   - component: {fileID: 1089413886}
   - component: {fileID: 1089413887}
   - component: {fileID: 1089413888}
-  m_Layer: 6
-  m_Name: Platform (1)
+  m_Layer: 7
+  m_Name: Umbral Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -682,7 +682,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.7176471, b: 0.76470596, a: 1}
+  m_Color: {r: 0.21817273, g: 0, b: 0.53144646, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -724,7 +724,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0077657998}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -735,7 +735,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0155315}
   m_EdgeRadius: 0
 --- !u!1 &1281995613
 GameObject:
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 1922206068}
   - component: {fileID: 1922206069}
   m_Layer: 6
-  m_Name: Platform
+  m_Name: Default Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2071317438}
   - component: {fileID: 2071317437}
-  - component: {fileID: 2071317436}
+  - component: {fileID: 2071317440}
   - component: {fileID: 2071317435}
   - component: {fileID: 2071317434}
   - component: {fileID: 2071317433}
@@ -1483,29 +1483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar3: {fileID: 1408485012}
   healthBar2: {fileID: 1281995613}
-  healthBar1: {fileID: 1504187710}
+  healthBar1: {fileID: 1964960573}
   hitSound: {fileID: 0}
---- !u!114 &2071317436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071317432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe592fe64e8ac74f86427d4e07946df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 10
-  playerJumpPower: 400
-  distToGround: 0.05
-  inControl: 1
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  coyoteAmnestyPeriod: 0.5
-  grounded: 1
 --- !u!212 &2071317437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1594,6 +1573,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2071317440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071317432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabc52957f0d6194ab2f9d4db80faf2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 10
+  playerJumpPower: 400
+  umbralPlayerSpeed: 15
+  distToGround: 0.1
+  inControl: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  UmbralLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  coyoteAmnestyPeriod: 0.5
 --- !u!1 &2081964515
 GameObject:
   m_ObjectHideFlags: 0

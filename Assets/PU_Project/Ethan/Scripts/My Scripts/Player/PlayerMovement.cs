@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour {
     public bool grounded = true;
 
 
-    // Update is called once per frame
     void Update()
     {
         if (inControl)
@@ -144,8 +143,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         Vector2 rayOrigin = transform.position - new Vector3(0, GetComponent<Collider2D>().bounds.extents.y, 0);
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, distToGround, GroundLayer);
-
-        return hit.collider != null;
+        return hit.collider != null ;
     }
 
     public void SetControl(bool b)

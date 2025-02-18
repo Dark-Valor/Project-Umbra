@@ -1,0 +1,4 @@
+[NAME=Elder][SPEAKERSPRITE=Elder] Good work Kai! 
+[NAME=Elder][SPEAKERSPRITE=Elder] You're getting closer to the sacred flower!
+[NAME=Elder][SPEAKERSPRITE=Elder] The water in this cave is shallow enough to swim. 
+[NAME=Elder][SPEAKERSPRITE=Elder] Float by pressing SPACE repeatedly.

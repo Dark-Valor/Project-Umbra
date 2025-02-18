@@ -1,0 +1,8 @@
+[NAME=Elder][SPEAKERSPRITE=Elder] Kai! Wait!
+[NAME=Kai][SPEAKERSPRITE=Kai] What's wrong?
+[NAME=Elder][SPEAKERSPRITE=Elder] Our island is being taken over! 
+[NAME=Elder][SPEAKERSPRITE=Elder] The volcano is causing evil to spring up across the island. 
+[NAME=Elder][SPEAKERSPRITE=Elder] Please retrieve the sacred flower to stop this! 
+[NAME=Elder][SPEAKERSPRITE=Elder] I've left surfboards with notes to help you progress.
+[NAME=Elder][SPEAKERSPRITE=Elder] There are skeletons just ahead. 
+[NAME=Elder][SPEAKERSPRITE=Elder] Avoid them by jumping over them. Good luck!

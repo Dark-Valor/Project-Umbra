@@ -1,0 +1,3 @@
+[NAME=Test][SPEAKERSPRITE=Test] Hi. 
+[NAME=Test][SPEAKERSPRITE=Test] This is sample text.
+[NAME=Test][SPEAKERSPRITE=Test] Bye.

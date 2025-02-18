@@ -1,0 +1,4 @@
+[NAME=Elder][SPEAKERSPRITE=Elder] You found a checkpoint! 
+[NAME=Elder][SPEAKERSPRITE=Elder] You will be returned here if you perish. 
+[NAME=Elder][SPEAKERSPRITE=Elder] Wait for moving platforms up ahead, 
+[NAME=Elder][SPEAKERSPRITE=Elder] some haunted ships are roaming the sea.

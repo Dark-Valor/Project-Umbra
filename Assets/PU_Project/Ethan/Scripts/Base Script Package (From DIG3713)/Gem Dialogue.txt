@@ -1,0 +1,2 @@
+[NAME=Elder][SPEAKERSPRITE=Elder] You found some treasure!
+[NAME=Elder][SPEAKERSPRITE=Elder] Walk over it to pick it up!

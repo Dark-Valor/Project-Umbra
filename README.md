@@ -17,7 +17,7 @@
 ---
 
 ## **About the Project**
-This project is a side-scrolling 2D platformer developed in Unity. It was made by the CAP3020 Spring 2025 Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
+This project is a side-scrolling 2D platformer developed in Unity. It was made by the (CAP3020 Spring 2025) Dark Valor team for [Convergence 2025](https://www.behance.net/Convergence2025#).
 
 ---
 
@@ -31,7 +31,6 @@ This project is a side-scrolling 2D platformer developed in Unity. It was made b
 ---
 
 ## **Screenshots**
-Add a few screenshots or GIFs to showcase the project visually:
 
 **Gameplay Example:**  
 ![Gameplay_Concept_01](GitHub/imgs/Gameplay_Concept_01.png)  
@@ -43,7 +42,6 @@ Add a few screenshots or GIFs to showcase the project visually:
 ---
 
 ## **Getting Started**
-Explain how others can download, run, or contribute to the project.
 
 ### **Prerequisites**
 List any dependencies or software needed:  
@@ -52,7 +50,6 @@ List any dependencies or software needed:
 - Git (for cloning the repository).  
 
 ### **Installation**
-Provide step-by-step instructions for cloning and running the project:
 
 1. Clone the repository:  
    ```bash
@@ -86,10 +83,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - GitHub:
   - [@Javier Lopez](https://github.com/JJRaderFTW)  
   - [@Aidan Rudolph](https://github.com/Aidan-Rudolph)
-  - [@username](https://github.com/username)  
+  - [@Seth Sainz](https://github.com/SethSainz)  
   - [@Alana Belnavis-Walters](https://github.com/humonae)  
   - [@Ethan Willis](https://github.com/ethanbwillis)
-  - [@Jack](https://github.com/EmptySet-Exe)  
 
 
 

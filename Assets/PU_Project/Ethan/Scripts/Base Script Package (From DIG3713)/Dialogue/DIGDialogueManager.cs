@@ -18,7 +18,7 @@ using TMPro;
  * A script by Michael O'Connell, extended by Benjamin Cohen, further extended by Eric Bejleri, and then extended even FURTHER again by Benjamin Cohen
  */
 
-public class DialogueManager : MonoBehaviour
+public class DIGDialogueManager : MonoBehaviour
 {
     [Header("UI Elements")]
     [Tooltip("your fancy canvas image that holds your text objects")]
@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour
     public PlayerShooter playerShooter;
 
     [HideInInspector]
-    public DialogueTrigger currentTrigger;
+    public DIGDialogueTrigger currentTrigger;
 
     //private bool levelBool = false;
     //private int levelIndex;

@@ -58,6 +58,7 @@ public class PlayerUmbralState : PlayerState
         } 
         else if (HitWall() && isVertical)
         {
+            Debug.Log("true");
             StopWallClimb();
         }
     }
@@ -112,9 +113,8 @@ public class PlayerUmbralState : PlayerState
     {
         Vector2 rayOrigin = player.transform.position;
 
-        RaycastHit2D hitRight = Physics2D.Raycast(rayOrigin, Vector2.right, 0.5f, player.UmbralLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(rayOrigin, Vector2.left, 0.5f, player.UmbralLayer);
-
+        RaycastHit2D hitRight = Physics2D.Raycast(rayOrigin, Vector2.right, 2.5f, player.UmbralLayer);
+        RaycastHit2D hitLeft = Physics2D.Raycast(rayOrigin, Vector2.left, 2.5f, player.UmbralLayer);
         
         bool validRightHit = hitRight.collider && hitRight.collider.CompareTag("VerticalWall");
         bool validLeftHit = hitLeft.collider && hitLeft.collider.CompareTag("VerticalWall");
@@ -140,7 +140,6 @@ public class PlayerUmbralState : PlayerState
         Debug.Log("Stopping wall climb");
         isVertical = false;
 
-        // Reset rotation and gravity
         player.transform.rotation = Quaternion.identity;
         Physics2D.gravity = originalGravity;
     }

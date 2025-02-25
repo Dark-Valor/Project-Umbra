@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class Player : MonoBehaviour
 
     [Tooltip("The umbral layer / the layer that the player can use shadow pool")]
     public LayerMask UmbralLayer;
+
+    public string umbralTag = "Umbral";
+    public string groundTag = "Ground";
 
     [Tooltip("The amount of time a player can be in the air and still be allowed to perform a coyote jump.")]
     public float coyoteAmnestyPeriod = 0.5f;

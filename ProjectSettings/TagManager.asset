@@ -9,6 +9,8 @@ TagManager:
   - Coin
   - Health
   - VerticalWall
+  - Ground
+  - Umbral
   layers:
   - Default
   - TransparentFX

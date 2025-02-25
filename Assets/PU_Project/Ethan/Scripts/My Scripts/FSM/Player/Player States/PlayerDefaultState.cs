@@ -151,6 +151,8 @@ public class PlayerDefaultState : PlayerState
     bool IsTouchingGround()
     {
         Vector2 rayOrigin = player.transform.position - new Vector3(0, player.GetComponent<Collider2D>().bounds.extents.y, 0);
+
+
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, player.distToGround, player.GroundLayer);
         RaycastHit2D hitUmbral = Physics2D.Raycast(rayOrigin, Vector2.down, player.distToGround, player.UmbralLayer);
 

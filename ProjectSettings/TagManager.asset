@@ -8,6 +8,7 @@ TagManager:
   - Death
   - Coin
   - Health
+  - VerticalWall
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Ground
   - UmbralLayer
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

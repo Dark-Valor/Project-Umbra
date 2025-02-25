@@ -6,10 +6,10 @@ using UnityEngine;
 //A script by Michael O'Connell, extended by Benjamin Cohen
 
 
-public class DialogueTrigger : MonoBehaviour
+public class DIGDialogueTrigger : MonoBehaviour
 {
     //Attach this script to an empty gameobject with a 2D collider set to trigger
-    DialogueManager manager;
+    DIGDialogueManager manager;
     public TextAsset TextFileAsset; // your imported text file for your NPC
     private Queue<string> dialogue = new Queue<string>(); // stores the dialogue (Great Performance!)
     public float waitTime = 0.5f; // lag time for advancing dialogue so you can actually read it
@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        manager = FindObjectOfType<DialogueManager>();
+        manager = FindObjectOfType<DIGDialogueManager>();
     }
 
 

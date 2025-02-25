@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Template_Tileset_64x64_11
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1037250149, guid: 20bf95f99fe42864f9ccbcc6fd8f693f, type: 3}
+  m_Sprite: {fileID: 1037250149, guid: 54e228b8180ac4bac8ce17f2fa74aaa6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

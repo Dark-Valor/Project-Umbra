@@ -11,8 +11,10 @@ public class SL_PointLightEditor : Editor
         SL_PointLight pointLight = (SL_PointLight)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(pointLight.transform.position,Vector3.forward,Vector3.up,360,pointLight.ViewRadius);
-        Vector3 viewAngleA = PU_Utilities.DirFromAngle(-pointLight.ViewAngle/2,false,pointLight.transform);
-        Vector3 viewAngleB = PU_Utilities.DirFromAngle(pointLight.ViewAngle/2,false,pointLight.transform);
+        // Vector3 viewAngleA = PU_Utilities.DirFromAngle(-pointLight.ViewAngle/2,false,pointLight.transform);
+        // Vector3 viewAngleB = PU_Utilities.DirFromAngle(pointLight.ViewAngle/2,false,pointLight.transform);
+        Vector3 viewAngleA = PU_Utilities.DirFromAngle(-pointLight.ViewAngle/2,pointLight.transform);
+        Vector3 viewAngleB = PU_Utilities.DirFromAngle(pointLight.ViewAngle/2,pointLight.transform);
 
         Handles.DrawLine(pointLight.transform.position,pointLight.transform.position+viewAngleA*pointLight.ViewRadius);
         Handles.DrawLine(pointLight.transform.position,pointLight.transform.position+viewAngleB*pointLight.ViewRadius);

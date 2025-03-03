@@ -36,6 +36,7 @@ public class SL_PointLight : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     MeshFilter viewMeshFilter;
     Mesh viewMesh;
+    [SerializeField] [Range (0,1)] float colorOpacity=1f;
     // List<Transform> visibleTargets = new List<Transform>();
     List<Vector3> visibleTargets = new List<Vector3>();
     public List<Vector3> VisibleTargets
@@ -43,8 +44,7 @@ public class SL_PointLight : MonoBehaviour
         get{return visibleTargets;}
         set{visibleTargets=value;}
     }
-    [SerializeField]
-    List<Tilemap> tilemaps;
+    [SerializeField] float delay=.2f;
 
 
 
@@ -55,7 +55,14 @@ public class SL_PointLight : MonoBehaviour
         viewMeshFilter = GetComponent<MeshFilter>();
         viewMeshFilter.mesh = viewMesh;
 
-        StartCoroutine("FindTargetsWithDelay", .2f);
+
+        StartCoroutine("FindTargetsWithDelay", delay);
+    }
+
+    void Update()
+    {
+        // FindVisibleTargets();
+        gameObject.GetComponent<MeshRenderer>().material.color = new Color(1,1,1,colorOpacity);
     }
 
     void LateUpdate()
@@ -180,13 +187,14 @@ public class SL_PointLight : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position,viewRadius,targetMask);
+        Plane plan2d;
 
         for(int i=0; i<targetsInViewRadius.Length;i++)
         {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 targetPos = target.position;
             // This is where tiles need to be tracked!
-            Debug.Log("Target: " + target.name);
+            // Debug.Log("Target: " + target.name);
             if(target.GetComponent<Tilemap>()!=null)
             {
                 visibleTargets.AddRange(VisibleTiles(target));
@@ -199,7 +207,7 @@ public class SL_PointLight : MonoBehaviour
                 if(Vector3.Angle(transform.up,dirToTarget)<viewAngle/2)
                 {
                     float distToTarget = Vector3.Distance(transform.position,target.position);
-                    RaycastHit2D obstacleHit = Physics2D.Raycast(transform.position,dirToTarget,distToTarget,obstacleMask);
+                    RaycastHit2D obstacleHit = Physics2D.Raycast(transform.position,dirToTarget,distToTarget,obstacleMask); // This would be a kind of raycast all...(!)
 
 
                     if(obstacleHit.collider==null)
@@ -215,7 +223,7 @@ public class SL_PointLight : MonoBehaviour
     // Vector3 VisibleTile(Transform tilemapTransform)
     List<Vector3> VisibleTiles(Transform tilemapTransform)
     {
-        Debug.Log("Entered VisibleTile!");
+        // Debug.Log("Entered VisibleTile!");
         // Vector3 result = tilemapTransform.position;
         List<Vector3> result = new List<Vector3>();
         Tilemap tilemap = tilemapTransform.GetComponent<Tilemap>();
@@ -248,7 +256,7 @@ public class SL_PointLight : MonoBehaviour
                 )
             )
             {
-                Debug.Log("hit2D name: " + hit2D.collider.name);
+                // Debug.Log("hit2D name: " + hit2D.collider.name);
 
                 Vector3 hitPos = hit2D.point;
 
@@ -257,18 +265,20 @@ public class SL_PointLight : MonoBehaviour
                 hitPos.y += transform.position.y-hitPos.y < 0 ?  .0001f : -.0001f;
 
                 tilePos = tilemap.WorldToCell(hitPos);
+                tilemap.SetTileFlags(tilePos,TileFlags.None);
+                tilemap.SetColor(tilePos, new Color(1,0,0,.5f));
 
                 hitTile = tilemap.GetTile(tilePos);
                 // if(hitTile!=null) result = tilePos;
                 // if(hitTile!=null) result = hitPos;
                 if(hitTile!=null) result.Add(hitPos);
 
-                if(hitTile!=null)
-                    Debug.Log($"Hit tile at {tilePos}: {hitTile.name}");
-                else
-                    Debug.LogError("No tile at position");
+                // if(hitTile!=null)
+                //     Debug.Log($"Hit tile at {tilePos}: {hitTile.name}");
+                // else
+                //     Debug.LogError("No tile at position");
 
-                Debug.Log("Position: " + hitPos);
+                // Debug.Log("Position: " + hitPos);
             }
         }
 

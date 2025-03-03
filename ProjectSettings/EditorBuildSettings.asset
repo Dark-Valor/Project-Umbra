@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/PU_Project/Jack/Level/Scenes/Game_Resolution_Test_01.unity
     guid: 00878d219b4e01e4aa4afbaf889fe710
   m_configObjects: {}

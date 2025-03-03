@@ -2,9 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent (typeof(Tilemap))]
 public class AllTilesLocations : MonoBehaviour
 {
-    public Tilemap tilemap; // Assign your Tilemap in the Inspector
+    Tilemap tilemap; // Assign your Tilemap in the Inspector
+
+    void Awake()
+    {
+        tilemap = GetComponent<Tilemap>();
+    }
+
 
     void Start()
     {

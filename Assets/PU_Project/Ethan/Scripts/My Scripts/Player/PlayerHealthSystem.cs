@@ -21,6 +21,8 @@ public class PlayerHealthSystem : MonoBehaviour {
     private Transform respawnPoint;
     private static int playerScore;
 
+    float timer;
+
     void Start()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
@@ -55,6 +57,8 @@ public class PlayerHealthSystem : MonoBehaviour {
     {
         // For more health, copy the if block for health3, change health3 to whatever yours is,
         // then change the if statement for health3 to else if
+        StartCoroutine(WaitForTime(0.333f));
+
 
         if (hitSound)
         {
@@ -97,5 +101,18 @@ public class PlayerHealthSystem : MonoBehaviour {
         healthBar1.SetActive(true);
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         gameObject.transform.position = respawnPoint.transform.position;
+    }
+
+    public IEnumerator WaitForTime(float time)
+    {
+        timer = 0f;
+        GetComponent<Animator>().SetBool("IsHurt", true);
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        GetComponent<Animator>().SetBool("IsHurt", false);
+        timer = 0f;
     }
 }

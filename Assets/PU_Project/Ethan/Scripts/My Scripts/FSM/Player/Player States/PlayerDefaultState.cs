@@ -16,8 +16,12 @@ public class PlayerDefaultState : PlayerState
     private float groundedTimer = 0f;
     private float requiredGroundTime = 0.2f;
 
+    private Rigidbody2D rb;
+    private Vector2 defaultGravity = new Vector2(0, -9.81f);
+
     private bool grounded = true;
 
+    private TileData currTile;
 
     public PlayerDefaultState(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
@@ -26,24 +30,38 @@ public class PlayerDefaultState : PlayerState
     public override void EnterState()
     {
         base.EnterState();
+        rb = player.GetComponent<Rigidbody2D>();
     }
 
     public override void ExitState()
     {
+        Reset();
         base.ExitState();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+
+        Vector3Int tilePosition = GetTilePosition();
+
+        currTile = TileManager.Instance.GetTileData(tilePosition);
+
         if (player.inControl)
         {
             PlayerMove();
         }
-        if (Input.GetKeyDown(KeyCode.E) && CanShadowPool())
+
+        if (Input.GetKeyDown(KeyCode.E) && currTile.type == TileData.Type.umbral)
         {
             Debug.Log("Shadow");
             player.StateMachine.ChangeState(player.UmbralState);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            player.meleeAttack.SetActive(true);
+            player.StartDeactivationCoroutine(player.meleeAttack, player.meleeAnimLength);
         }
     }
 
@@ -122,10 +140,12 @@ public class PlayerDefaultState : PlayerState
         if (moveX < 0.0f)
         {
             player.GetComponent<SpriteRenderer>().flipX = true;
+            player.meleeAttack.transform.localPosition = new Vector3(-1.57000005f, -0.0286999997f, 0);
         }
         else if (moveX > 0.0f)
         {
             player.GetComponent<SpriteRenderer>().flipX = false;
+            player.meleeAttack.transform.localPosition = new Vector3(1.81649995f, -0.0286999997f, 0);
         }
 
         //PHYSICS
@@ -154,15 +174,6 @@ public class PlayerDefaultState : PlayerState
 
 
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, player.distToGround, player.GroundLayer);
-        RaycastHit2D hitUmbral = Physics2D.Raycast(rayOrigin, Vector2.down, player.distToGround, player.UmbralLayer);
-
-        return hit.collider != null || hitUmbral.collider != null;
-    }
-
-    bool CanShadowPool()
-    {
-        Vector2 rayOrigin = player.transform.position - new Vector3(0, player.GetComponent<Collider2D>().bounds.extents.y, 0);
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, player.distToGround, player.UmbralLayer);
 
         return hit.collider != null;
     }
@@ -171,4 +182,36 @@ public class PlayerDefaultState : PlayerState
     {
         player.inControl = b;
     }
+
+    void Reset()
+    {
+        rb.freezeRotation = false;
+        player.transform.rotation = Quaternion.identity;
+
+        Physics2D.gravity = defaultGravity;
+        Debug.Log("reset");
+        rb.freezeRotation = true;
+    }
+
+    void DeactivateMeleeAttacck()
+    {
+        player.meleeAttack.SetActive(false);
+    }
+
+    Vector3Int GetTilePosition()
+    {
+        Vector3 worldPos = player.transform.position;
+        Vector3Int tilePos = TileManager.Instance.tilemap.WorldToCell(worldPos);
+
+        // If the current tile is empty, check below the player
+        if (!TileManager.Instance.tileMetadata.ContainsKey(tilePos))
+        {
+            tilePos.y -= 1; // Move down one tile to check if the tile below exists
+            //Debug.Log($"Adjusted Player Tile Check to {tilePos}");
+        }
+
+        return tilePos;
+    }
+
+
 }

@@ -11,6 +11,11 @@ TagManager:
   - VerticalWall
   - Ground
   - Umbral
+  - Floor
+  - Ceiling
+  - NPC
+  - Switch
+  - PlayerMelee
   layers:
   - Default
   - TransparentFX

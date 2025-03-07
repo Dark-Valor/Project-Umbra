@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -42,7 +40,12 @@ public class PointLightController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Detected: " + other.name);
+        Debug.Log("Enter Detected: " + other.name);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("Exit Detected: " + other.name);
     }
 
     void Update()
@@ -192,12 +195,20 @@ public class PointLightController : MonoBehaviour
             // Take a target and get it's position
             Transform target = targetsInViewRadius[i].transform;
             Vector3 targetPos = target.position;
+            ContactPoint2D[] contacts = new ContactPoint2D[50];
+
             // This is where tiles need to be tracked!
             // Debug.Log("Target: " + target.name);
 
             // 2.1) If a Collider is a Tilemap
             if(target.GetComponent<Tilemap>()!=null)
             {
+                int contactCount = GetComponent<PolygonCollider2D>().GetContacts(contacts);
+                if(contactCount>0)
+                for(int j=0;j<contactCount;j++)
+                {
+                    Debug.Log("Contact Point["+j+"]: "+contacts[j]);
+                }
                 // Add it to Visible targets (this is a lie!)
                 pointLightModel.VisibleTargets.AddRange(VisibleTiles(target));
             }
@@ -279,6 +290,7 @@ public class PointLightController : MonoBehaviour
                 // 5.) Get and alter the detected tile
                 tilePos = tilemap.WorldToCell(hitPos);
                 tilemap.SetTileFlags(tilePos,TileFlags.None);
+                tilemap.GetComponent<GridInformation>().SetPositionProperty(tilePos,"Umbral State",1);
                 tilemap.SetColor(tilePos, new Color(1,0,0,.5f));
 
                 // 6.) Get the Detect tile and add it to "visible" tile(s)

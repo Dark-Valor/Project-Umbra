@@ -24,8 +24,11 @@ public class ChangeTileColor : MonoBehaviour
 
 
             tilemap.SetTileFlags(gridPosition,TileFlags.None);
+            int result = GetComponent<GridInformation>().GetPositionProperty(gridPosition,"Umbral State",0);
             tilemap.SetColor(gridPosition, Color.white);
             Debug.Log("Grid Pos: " + gridPosition);
+            Debug.Log("Umbral State: " + result);
+            GetComponent<GridInformation>().SetPositionProperty(gridPosition,"Umbral State",0);
         }
     }
 }

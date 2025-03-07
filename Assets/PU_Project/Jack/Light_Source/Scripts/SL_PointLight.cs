@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,9 @@ public class SL_PointLight : MonoBehaviour
         set{visibleTargets=value;}
     }
     [SerializeField] float delay=.2f;
+    // List<Tuple<Tilemap,Vector3Int>> _visibleTiles = new List<Tuple<Tilemap,Vector3Int>>();
+    [SerializeField] List<Tilemap> _tilemaps;
+    Dictionary<Tilemap,List<Vector3Int>> _visibleTiles = new Dictionary<Tilemap,List<Vector3Int>>();
 
 
 
@@ -55,6 +59,8 @@ public class SL_PointLight : MonoBehaviour
         viewMeshFilter = GetComponent<MeshFilter>();
         viewMeshFilter.mesh = viewMesh;
 
+        foreach(Tilemap tm in _tilemaps)
+            _visibleTiles.Add(tm, new List<Vector3Int>());
 
         StartCoroutine("FindTargetsWithDelay", delay);
     }
@@ -189,6 +195,7 @@ public class SL_PointLight : MonoBehaviour
         Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position,viewRadius,targetMask);
         Plane plan2d;
 
+
         for(int i=0; i<targetsInViewRadius.Length;i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -197,6 +204,14 @@ public class SL_PointLight : MonoBehaviour
             // Debug.Log("Target: " + target.name);
             if(target.GetComponent<Tilemap>()!=null)
             {
+                Tilemap tm = target.GetComponent<Tilemap>();
+                foreach(Vector3Int tile in _visibleTiles[tm])
+                {
+                    tm.SetTileFlags(tile,TileFlags.None);
+                    tm.GetComponent<GridInformation>().SetPositionProperty(tile,"Umbral State",0);
+                    tm.SetColor(tile, Color.white);
+                }
+                _visibleTiles[tm].Clear();
                 visibleTargets.AddRange(VisibleTiles(target));
             }
             else
@@ -265,7 +280,9 @@ public class SL_PointLight : MonoBehaviour
                 hitPos.y += transform.position.y-hitPos.y < 0 ?  .0001f : -.0001f;
 
                 tilePos = tilemap.WorldToCell(hitPos);
+                _visibleTiles[tilemap].Add(tilePos);
                 tilemap.SetTileFlags(tilePos,TileFlags.None);
+                tilemap.GetComponent<GridInformation>().SetPositionProperty(tilePos,"Umbral State",1);
                 tilemap.SetColor(tilePos, new Color(1,0,0,.5f));
 
                 hitTile = tilemap.GetTile(tilePos);

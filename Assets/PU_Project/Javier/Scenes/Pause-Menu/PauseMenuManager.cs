@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    //Fields to be set in the inspector
     [SerializeField]
     private GameObject _MainMenuCanvasGO;
     [SerializeField]

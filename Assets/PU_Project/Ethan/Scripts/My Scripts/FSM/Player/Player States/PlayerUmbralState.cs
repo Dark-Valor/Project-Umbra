@@ -235,8 +235,8 @@ public class PlayerUmbralState : PlayerState
         }
         else if (playerOrientation == Orientation.LeftVertical)
         {
-            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
-            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
+            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
+            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
             rightRaycast = Physics2D.Raycast(rightRayOrigin, Vector2.left, player.distToGround * 2f, player.GroundLayer);
             leftRaycast = Physics2D.Raycast(leftRayOrigin, Vector2.left, player.distToGround * 2f, player.GroundLayer);
 
@@ -274,7 +274,7 @@ public class PlayerUmbralState : PlayerState
             }
             if (initialOrientation == Orientation.UpsideDown)
             {
-                playerOrientation = Orientation.RightVertical;
+                playerOrientation = Orientation.LeftVertical;
             }
 
             ChangePlayerOrientationEdge();
@@ -290,18 +290,22 @@ public class PlayerUmbralState : PlayerState
             player.inControl = false;
             if (initialOrientation == Orientation.RightSideUp)
             {
+                Debug.Log("RIGHTSIDEUP TO RIGHT");
                 playerOrientation = Orientation.RightVertical;
             }
             else if (initialOrientation == Orientation.RightVertical)
             {
+                Debug.Log("RIGHTVERTICAL TO UPSIDEDOWN");
                 playerOrientation = Orientation.UpsideDown;
             }
             else if (initialOrientation == Orientation.UpsideDown)
             {
-                playerOrientation = Orientation.LeftVertical;
+                Debug.Log("UPSIDE DOWN TO RIGHTVERTICAL");
+                playerOrientation = Orientation.RightVertical;
             }
             else if (initialOrientation == Orientation.LeftVertical)
             {
+                Debug.Log("LEFT TO RIGHTSIDEUP");
                 playerOrientation = Orientation.RightSideUp;
             }
 
@@ -346,16 +350,17 @@ public class PlayerUmbralState : PlayerState
             switch (playerOrientation)
             {
                 case Orientation.RightSideUp:
-                    player.transform.position = new Vector3(tileWorldPos.x - player.GetComponent<Collider2D>().bounds.extents.x, tileWorldPos.y + player.GetComponent<Collider2D>().bounds.extents.y, player.transform.position.z);
+                    player.transform.position = new Vector3(tileWorldPos.x - player.GetComponent<Collider2D>().bounds.extents.x - 3f, tileWorldPos.y + player.GetComponent<Collider2D>().bounds.extents.y + 1.75f, player.transform.position.z);
                     break;
                 case Orientation.UpsideDown:
                     player.transform.position = new Vector3(tileWorldPos.x + player.GetComponent<Collider2D>().bounds.extents.x, tileWorldPos.y - player.GetComponent<Collider2D>().bounds.extents.y, player.transform.position.z);
                     break;
                 case Orientation.LeftVertical:
-                    player.transform.position = new Vector3(tileWorldPos.x - player.GetComponent<Collider2D>().bounds.extents.x, tileWorldPos.y + player.GetComponent<Collider2D>().bounds.extents.y, player.transform.position.z);
+                    Debug.Log("LeftVertical");
+                    player.transform.position = new Vector3(tileWorldPos.x - player.GetComponent<Collider2D>().bounds.extents.x, tileWorldPos.y - player.GetComponent<Collider2D>().bounds.extents.y, player.transform.position.z);
                     break;
                 case Orientation.RightVertical:
-                    player.transform.position = new Vector3(tileWorldPos.x + player.GetComponent<Collider2D>().bounds.extents.x, tileWorldPos.y + player.GetComponent<Collider2D>().bounds.extents.y, player.transform.position.z);
+                    player.transform.position = new Vector3(tileWorldPos.x + player.GetComponent<Collider2D>().bounds.extents.x - 3f, tileWorldPos.y + player.GetComponent<Collider2D>().bounds.extents.y - 4f, player.transform.position.z);
                     break;
             }
         }

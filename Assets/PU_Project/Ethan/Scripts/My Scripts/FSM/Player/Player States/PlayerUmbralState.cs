@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -88,10 +90,12 @@ public class PlayerUmbralState : PlayerState
 
         if (isRotating)
         {
+            player.inControl = false;
             rotationTimer += Time.deltaTime;
             if (rotationTimer >= 0.75f)
             {
                 isRotating = false;
+                player.inControl = true;
                 rotationTimer = 0;
             }
         }
@@ -211,8 +215,8 @@ public class PlayerUmbralState : PlayerState
         Orientation initialOrientation = playerOrientation;
         if (playerOrientation == Orientation.RightSideUp)
         {
-            rightRayOrigin = new Vector2(player.transform.position.x + player.GetComponent<Collider2D>().bounds.extents.x, player.transform.position.y);
-            leftRayOrigin = new Vector2(player.transform.position.x - player.GetComponent<Collider2D>().bounds.extents.x, player.transform.position.y);
+            rightRayOrigin = new Vector2(player.transform.position.x + player.GetComponent<Collider2D>().bounds.extents.x - 0.19f, player.transform.position.y);
+            leftRayOrigin = new Vector2(player.transform.position.x - player.GetComponent<Collider2D>().bounds.extents.x - 0.19f, player.transform.position.y);
             rightRaycast = Physics2D.Raycast(rightRayOrigin, Vector2.down, player.distToGround * 2f, player.GroundLayer);
             leftRaycast = Physics2D.Raycast(leftRayOrigin, Vector2.down, player.distToGround * 2f, player.GroundLayer);
 
@@ -221,8 +225,8 @@ public class PlayerUmbralState : PlayerState
         } 
         else if (playerOrientation == Orientation.UpsideDown)
         {
-            rightRayOrigin = new Vector2(player.transform.position.x + player.GetComponent<Collider2D>().bounds.extents.x, player.transform.position.y);
-            leftRayOrigin = new Vector2(player.transform.position.x - player.GetComponent<Collider2D>().bounds.extents.x, player.transform.position.y);
+            rightRayOrigin = new Vector2(player.transform.position.x + player.GetComponent<Collider2D>().bounds.extents.x + 0.19f, player.transform.position.y);
+            leftRayOrigin = new Vector2(player.transform.position.x - player.GetComponent<Collider2D>().bounds.extents.x + 0.19f, player.transform.position.y);
             rightRaycast = Physics2D.Raycast(rightRayOrigin, Vector2.up, player.distToGround * 2f, player.GroundLayer);
             leftRaycast = Physics2D.Raycast(leftRayOrigin, Vector2.up, player.distToGround * 2f, player.GroundLayer);
 
@@ -231,8 +235,8 @@ public class PlayerUmbralState : PlayerState
         }
         else if (playerOrientation == Orientation.LeftVertical)
         {
-            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y);
-            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y);
+            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
+            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y + 0.19f);
             rightRaycast = Physics2D.Raycast(rightRayOrigin, Vector2.left, player.distToGround * 2f, player.GroundLayer);
             leftRaycast = Physics2D.Raycast(leftRayOrigin, Vector2.left, player.distToGround * 2f, player.GroundLayer);
 
@@ -241,8 +245,8 @@ public class PlayerUmbralState : PlayerState
         } 
         else
         {
-            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y);
-            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y);
+            rightRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y + player.GetComponent<Collider2D>().bounds.extents.y - 0.19f);
+            leftRayOrigin = new Vector2(player.transform.position.x, player.transform.position.y - player.GetComponent<Collider2D>().bounds.extents.y - 0.19f);
             rightRaycast = Physics2D.Raycast(rightRayOrigin, Vector2.right, player.distToGround * 2f, player.GroundLayer);
             leftRaycast = Physics2D.Raycast(leftRayOrigin, Vector2.right, player.distToGround * 2f, player.GroundLayer);
 
@@ -532,13 +536,15 @@ public class PlayerUmbralState : PlayerState
         Vector2 rayOrigin = player.transform.position;
         RaycastHit2D hit = new RaycastHit2D();
 
+        Tilemap tilemap = TileManager.Instance.tilemap;
+
         Vector2 newGravity = new Vector2(0f, 0f);
 
         //right vertical wall
         if (Physics2D.gravity == new Vector2(9.81f, 0))
         {
             Debug.Log("TRIED FROM RIGHT WALL");
-            positionOffset = -player.GetComponent<Collider2D>().bounds.extents.x;
+            positionOffset = -player.GetComponent<Collider2D>().bounds.extents.x + 1f;
             xOrY = true;
             hit = Physics2D.Raycast(rayOrigin, Vector2.left, 150f, player.GroundLayer);
             newGravity = new Vector2(-9.81f, 0f);
@@ -546,6 +552,8 @@ public class PlayerUmbralState : PlayerState
             rb.freezeRotation = false;
             player.transform.rotation = Quaternion.Euler(0, 0, -90);
             rb.freezeRotation = true;
+
+            playerOrientation = Orientation.LeftVertical;
             
             Debug.DrawRay(rayOrigin, Vector2.left * 150f, Color.red, 0.1f);
         }
@@ -553,7 +561,7 @@ public class PlayerUmbralState : PlayerState
         else if (Physics2D.gravity == new Vector2(-9.81f, 0))
         {
             Debug.Log("TRIED FROM LEFT WALL");
-            positionOffset = player.GetComponent<Collider2D>().bounds.extents.x;
+            positionOffset = player.GetComponent<Collider2D>().bounds.extents.x + 3f;
             xOrY = true;
             hit = Physics2D.Raycast(rayOrigin, Vector2.right, 150f, player.GroundLayer);
             newGravity = new Vector2(9.81f, 0f);
@@ -562,12 +570,14 @@ public class PlayerUmbralState : PlayerState
             player.transform.rotation = Quaternion.Euler(0, 0, 90);
             rb.freezeRotation = true;
 
+            playerOrientation = Orientation.RightVertical;
+
             Debug.DrawRay(rayOrigin, Vector2.right * 150f, Color.red, 0.1f);
         }
         //on the ground
         else if (Physics2D.gravity == defaultGravity)
         {
-            positionOffset = player.GetComponent<Collider2D>().bounds.extents.y;
+            positionOffset = player.GetComponent<Collider2D>().bounds.extents.y + 4f;
             xOrY = false;
             hit = Physics2D.Raycast(rayOrigin, Vector2.up, 150f, player.GroundLayer);
             newGravity = -defaultGravity;
@@ -577,12 +587,14 @@ public class PlayerUmbralState : PlayerState
             rb.freezeRotation = true;
             isVertical = false;
 
+            playerOrientation = Orientation.UpsideDown;
+
             Debug.DrawRay(rayOrigin, Vector2.up * 150f, Color.red, 0.1f);
         }
         //on the ceiling
         else if (Physics2D.gravity == -defaultGravity)
         {
-            positionOffset = -player.GetComponent<Collider2D>().bounds.extents.y;
+            positionOffset = -player.GetComponent<Collider2D>().bounds.extents.y - 2f;
             xOrY = false;
             hit = Physics2D.Raycast(rayOrigin, Vector2.down, 150f, player.GroundLayer);
             newGravity = defaultGravity;
@@ -591,6 +603,7 @@ public class PlayerUmbralState : PlayerState
             player.transform.rotation = Quaternion.identity;
             rb.freezeRotation = true;
 
+            playerOrientation = Orientation.RightSideUp;
 
             Debug.DrawRay(rayOrigin, Vector2.down * 150f, Color.red, 0.1f);
         }
@@ -601,24 +614,27 @@ public class PlayerUmbralState : PlayerState
 
         if (hit.collider != null)
         {
-            //start coroutine - lerp to position
+            Vector3Int tilePosition = tilemap.WorldToCell(hit.point);
+
+            Vector3 tileWorldPos = tilemap.GetCellCenterWorld(tilePosition);
+
+            Debug.Log($"[DartJump] Moving to Tile: {tilePosition} at {tileWorldPos}");
+
+            Vector3 target;
             if (xOrY)
             {
-                //player.transform.position = new Vector3(hit.collider.transform.position.x - positionOffset, player.transform.position.y, player.transform.position.z); 
-                Vector3 target = new Vector3(hit.collider.transform.position.x - positionOffset, player.transform.position.y, player.transform.position.z);
-                lerping = true;
-                player.StartMovementCoroutine(target, 200f);
+                target = new Vector3(tileWorldPos.x - positionOffset, player.transform.position.y, player.transform.position.z);
             }
-            //start coroutine - lerp to positon
             else
             {
-                //player.transform.position = new Vector3(player.transform.position.x, hit.collider.transform.position.y - positionOffset, hit.collider.transform.position.z); 
-                Vector3 target = new Vector3(player.transform.position.x, hit.collider.transform.position.y - positionOffset, hit.collider.transform.position.z);
-                lerping = true;
-                player.StartMovementCoroutine(target, 200f);
+                target = new Vector3(player.transform.position.x, tileWorldPos.y - positionOffset, player.transform.position.z);
             }
 
+            lerping = true;
+            player.StartMovementCoroutine(target, 100f);
+
             Physics2D.gravity = newGravity;
+
         }
         else
         {

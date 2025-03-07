@@ -77,12 +77,14 @@ public class Player : MonoBehaviour
         //another fucking problem with tiles being one game object - this ends instantly
         //do a raycast and pass it in. if it touches, then you end the coroutine
         //flip to orientation handedled in umbral state code
+        inControl = false;
         while (Vector3.Distance(transform.position, targetPos) > 0.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
         Debug.Log("LERPING DONE");
+        inControl = true;
         OnLerpFinished?.Invoke();
     }
 
